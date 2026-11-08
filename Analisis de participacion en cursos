@@ -1,0 +1,55 @@
+#definición inicial de los conjuntos con los estudiantes inscritos
+curso_A = {"Ana", "Carlos", "Laura", "Pedro", "Sofia", "Andres", "Camila"}
+curso_B = {"Laura", "Pedro", "Daniel", "Sofia", "Mateo", "Valentina"}
+
+#costrar los estudiantes inscritos en cada curso
+print("---1. ESTUDIANTES INSCRITOS EN CADA CURSO ---")
+print(f"Curso A (Fundamentos de programación): {curso_A}")
+print(f"Curso B (Introducción a bases de datos): {curso_B}")
+
+#calcular cuántos estudiantes diferentes están inscritos entre los dos cursos (Unión)
+todos_estudiantes = curso_A.union(curso_B)
+print(f"2. TOTAL DE ESTUDIANTES DIFERENTES ---")
+print(f"Cantidad total: {len(todos_estudiantes)}")
+print(f"Listado: {todos_estudiantes}")
+
+#Identificar los estudiantes que están inscritos en ambos cursos (Intersección)
+ambos_cursos = curso_A.intersection(curso_B)
+print(f"3. ESTUDIANTES EN AMBOS CURSOS ---")
+print(ambos_cursos)
+
+#estudiantes inscritos únicamente en el curso A (Diferencia A - B)
+solo_A = curso_A.difference(curso_B)
+print(f"4. ESTUDIANTES INSCRITOS ÚNICAMENTE EN EL CURSO A ---")
+print(solo_A)
+
+#estudiantes inscritos únicamente en el curso B (Diferencia B - A)
+solo_B = curso_B.difference(curso_A)
+print(f"5. ESTUDIANTES INSCRITOS ÚNICAMENTE EN EL CURSO B ---")
+print(solo_B)
+
+#listado de todos los estudiantes inscritos en exactamente uno de los dos cursos (Diferencia simétrica)
+exactamente_uno = curso_A.symmetric_difference(curso_B)
+print(f"6. ESTUDIANTES EN EXACTAMENTE UN CURSO ---")
+print(exactamente_uno)
+
+#determinar si todos los estudiantes del curso A también están inscritos en el curso B (Subconjunto)
+todos_A_en_B = curso_A.issubset(curso_B)
+print(f"7. ¿TODOS LOS DEL CURSO A ESTÁN EN EL CURSO B? ---")
+print(f"Respuesta: {todos_A_en_B}")
+
+#ermitir agregar un nuevo estudiante a cualquiera de los dos cursos y actualizar resultados
+print(f"8. AGREGAR NUEVO ESTUDIANTE ---")
+curso_elegido = input("¿A qué curso desea agregarlo? (Escriba A o B): ").strip().upper()
+nuevo_nombre = input("Ingrese el nombre del estudiante: ").strip().capitalize()
+
+if curso_elegido == "A":
+    curso_A.add(nuevo_nombre)
+    print(f"Estudiante agregado con éxito")
+    print(f"Curso A actualizado: {curso_A}")
+elif curso_elegido == "B":
+    curso_B.add(nuevo_nombre)
+    print(f"\n¡Estudiante agregado con éxito!")
+    print(f"Curso B actualizado: {curso_B}")
+else:
+    print("Opción de curso no válida. Debe ser 'A' o 'B'.")
