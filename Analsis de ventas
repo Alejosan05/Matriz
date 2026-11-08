@@ -1,0 +1,68 @@
+# Filas = Vendedores (3), Columnas = Semanas (4)
+# Los valores están en millones de pesos
+matriz_ventas = [
+    [12, 15, 10, 18],  # Vendedor 1
+    [8, 14, 16, 12],   # Vendedor 2
+    [20, 18, 15, 22]   # Vendedor 3
+]
+
+#mostrar la matriz completa indicando vendedor y semana
+print("--- 1. MATRIZ DE VENTAS COMPLETA ---")
+for i in range(len(matriz_ventas)):
+    for j in range(len(matriz_ventas[i])):
+        print(f"Vendedor {i + 1} | Semana {j + 1}: {matriz_ventas[i][j]} millones")
+
+# Total de ventas realizadas por cada vendedor
+print("--- 2. TOTAL DE VENTAS POR VENDEDOR ---")
+totales_vendedores = []
+for i in range(len(matriz_ventas)):
+    suma_vendedor = sum(matriz_ventas[i])
+    totales_vendedores.append(suma_vendedor)
+    print(f"Vendedor {i + 1}: {suma_vendedor} millones")
+
+#Total de ventas de cada semana (sumando las columnas)
+print("--- 3. TOTAL DE VENTAS POR SEMANA ---")
+num_semanas = len(matriz_ventas[0])
+num_vendedores = len(matriz_ventas)
+for j in range(num_semanas):
+    suma_semana = 0
+    for i in range(num_vendedores):
+        suma_semana += matriz_ventas[i][j]
+    print(f"Semana {j + 1}: {suma_semana} millones")
+
+#Identificar qué vendedor obtuvo el mayor total de ventas
+mayor_ventas = max(totales_vendedores)
+indice_mejor_vendedor = totales_vendedores.index(mayor_ventas)
+print(f"4. VENDEDOR CON MÁS VENTAS ---")
+print(f"El Vendedor {indice_mejor_vendedor + 1} fue el mejor con un total de {mayor_ventas} millones.")
+
+#identificar la semana con mayor volumen de ventas
+totales_semanas = []
+for j in range(num_semanas):
+    suma_semana = sum(matriz_ventas[i][j] for i in range(num_vendedores))
+    totales_semanas.append(suma_semana)
+
+mayor_volumen = max(totales_semanas)
+indice_mejor_semana = totales_semanas.index(mayor_volumen)
+print(f"5. SEMANA CON MAYOR VOLUMEN ---")
+print(f"La Semana {indice_mejor_semana + 1} registró el mayor volumen con {mayor_volumen} millones.")
+
+#Calcular el promedio general de ventas de la empresa
+total_general = sum(totales_vendedores)
+total_celdas = num_vendedores * num_semanas
+promedio_general = total_general / total_celdas
+print(f"6. PROMEDIO GENERAL ---")
+print(f"El promedio general de ventas es: {promedio_general:.2f} millones.")
+
+#modificar las ventas de un vendedor en una semana específica
+print(f"7. MODIFICAR UN VALOR EN LA MATRIZ ---")
+# Nota para principiante: Las posiciones en Python empiezan en 0. 
+# Si quieres el Vendedor 1, ingresa 0. Si quieres la Semana 1, ingresa 0.
+fila = int(input("Ingrese el número de vendedor (0 a 2): "))
+columna = int(input("Ingrese el número de semana (0 a 3): "))
+nuevo_valor = int(input("Ingrese el nuevo valor de ventas en millones: "))
+
+matriz_ventas[fila][columna] = nuevo_valor
+print("Matriz actualizada con éxito! Así quedó:")
+for fila_actualizada in matriz_ventas:
+    print(fila_actualizada)
